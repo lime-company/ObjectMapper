@@ -187,14 +187,6 @@ class MappableTypesWithTransformsTests: XCTestCase {
 		XCTAssertNotEqual(game!.O_teams!.count, 0)
 	}
 
-	// MARK: - Implicitly Unwrapped Optional Tests
-	func testParsingImplicitlyUnwrappedSingleInstanceWithTransform() {
-		let game = Mapper<Game>().map(JSONObject: JSONPayload()["game"])
-		
-		XCTAssertNotNil(game)
-		XCTAssertNotNil(game!.I_winner)
-	}
-	
 	func testParsingImplicitlyUnwrappedArrayOfObjectsWithTransform() {
 		let teams = Mapper<Team>().mapArray(JSONObject: JSONPayload()["teams"])
 		
@@ -203,44 +195,6 @@ class MappableTypesWithTransformsTests: XCTestCase {
 		
 		XCTAssertNotNil(teams!.first!.I_players)
 		XCTAssertNotEqual(teams!.first!.I_players!.count, 0)
-	}
-	
-	func testParsingImplicitlyUnwrapped2DimensionalArrayOfObjectsWithTransform() {
-		let game = Mapper<Game>().map(JSONObject: JSONPayload()["game"])
-		
-		XCTAssertNotNil(game)
-		XCTAssertNotNil(game!.I_players)
-		XCTAssertNotEqual(game!.I_players!.count, 0)
-		XCTAssertNotEqual(game!.I_players!.first!.count, 0)
-		XCTAssertNotEqual(game!.I_players!.last!.count, 0)
-	}
-	
-	func testParsingImplicitlyUnwrappedDictionaryOfObjectsWithTransform() {
-		let game = Mapper<Game>().map(JSONObject: JSONPayload()["game"])
-		
-		XCTAssertNotNil(game)
-		XCTAssertNotNil(game!.I_team1Lineup)
-		XCTAssertNotEqual(game!.I_team1Lineup!.count, 0)
-		XCTAssertNotNil(game!.I_team2Lineup)
-		XCTAssertNotEqual(game!.I_team2Lineup!.count, 0)
-	}
-	
-	func testParsingImplicitlyUnwrappedDictionaryOfArrayOfObjectsWithTransform() {
-		let game = Mapper<Game>().map(JSONObject: JSONPayload()["game"])
-		
-		XCTAssertNotNil(game)
-		XCTAssertNotNil(game!.I_headToHead)
-		for (position, players) in game!.I_headToHead! {
-			XCTAssertNotEqual(players.count, 0, "No players were mapped for \(position)")
-		}
-	}
-	
-	func testParsingImplicitlyUnwrappedSetOfObjectsWithTransform() {
-		let game = Mapper<Game>().map(JSONObject: JSONPayload()["game"])
-		
-		XCTAssertNotNil(game)
-		XCTAssertNotNil(game!.I_teams)
-		XCTAssertNotEqual(game!.I_teams!.count, 0)
 	}
 
 	// MARK: - Internal classes for testing
@@ -261,13 +215,13 @@ class MappableTypesWithTransformsTests: XCTestCase {
 		var O_teams: Set<Team>?
 		var O_winner: Team?
 		
-		// Implicitly Unwrapped
-		var I_players: [[Player]]!
-		var I_team1Lineup: [String: Player]!
-		var I_team2Lineup: [String: Player]!
-		var I_headToHead: [String: [Player]]!
-		var I_teams: Set<Team>!
-		var I_winner: Team!
+//		// Implicitly Unwrapped (not supported in our version)
+//		var I_players: [[Player]]!
+//		var I_team1Lineup: [String: Player]!
+//		var I_team2Lineup: [String: Player]!
+//		var I_headToHead: [String: [Player]]!
+//		var I_teams: Set<Team>!
+//		var I_winner: Team!
 		
 		required init(URI: String) { self.URI = URI }
 		required init?(map: Map) {}
@@ -287,14 +241,6 @@ class MappableTypesWithTransformsTests: XCTestCase {
 			O_headToHead	<- (map["head_to_head"], RelationshipTransform<Player>())
 			O_teams			<- (map["teams"], RelationshipTransform<Team>())
 			O_winner		<- (map["winning_team_url"], RelationshipTransform<Team>())
-			
-			// Implicitly Unwrapped
-			I_players		<- (map["players"], RelationshipTransform<Player>())
-			I_team1Lineup	<- (map["team1_lineup"], RelationshipTransform<Player>())
-			I_team2Lineup	<- (map["team1_lineup"], RelationshipTransform<Player>())
-			I_headToHead	<- (map["head_to_head"], RelationshipTransform<Player>())
-			I_teams			<- (map["teams"], RelationshipTransform<Team>())
-			I_winner		<- (map["winning_team_url"], RelationshipTransform<Team>())
 		}
 	}
 	

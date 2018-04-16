@@ -55,7 +55,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.bool, value)
 		XCTAssertEqual(mappedObject?.boolOptional, value)
-		XCTAssertEqual(mappedObject?.boolImplicityUnwrapped, value)
 	}
 
 	/// - warning: This test doens't consider integer overflow/underflow.
@@ -108,43 +107,33 @@ class BasicTypesTestsFromJSON: XCTestCase {
 			
 			XCTAssertEqual(mappedObject?.int, 123)
 			XCTAssertEqual(mappedObject?.intOptional, 123)
-			XCTAssertEqual(mappedObject?.intImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.int8, 123)
 			XCTAssertEqual(mappedObject?.int8Optional, 123)
-			XCTAssertEqual(mappedObject?.int8ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.int16, 123)
 			XCTAssertEqual(mappedObject?.int16Optional, 123)
-			XCTAssertEqual(mappedObject?.int16ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.int32, 123)
 			XCTAssertEqual(mappedObject?.int32Optional, 123)
-			XCTAssertEqual(mappedObject?.int32ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.int64, 123)
 			XCTAssertEqual(mappedObject?.int64Optional, 123)
-			XCTAssertEqual(mappedObject?.int64ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.uint, 123)
 			XCTAssertEqual(mappedObject?.uintOptional, 123)
-			XCTAssertEqual(mappedObject?.uintImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.uint8, 123)
 			XCTAssertEqual(mappedObject?.uint8Optional, 123)
-			XCTAssertEqual(mappedObject?.uint8ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.uint16, 123)
 			XCTAssertEqual(mappedObject?.uint16Optional, 123)
-			XCTAssertEqual(mappedObject?.uint16ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.uint32, 123)
 			XCTAssertEqual(mappedObject?.uint32Optional, 123)
-			XCTAssertEqual(mappedObject?.uint32ImplicityUnwrapped, 123)
 			
 			XCTAssertEqual(mappedObject?.uint64, 123)
 			XCTAssertEqual(mappedObject?.uint64Optional, 123)
-			XCTAssertEqual(mappedObject?.uint64ImplicityUnwrapped, 123)
 		}
 		
 		parameterize(Int.self)
@@ -210,62 +199,48 @@ class BasicTypesTestsFromJSON: XCTestCase {
 
 		XCTAssertEqual(mappedObject?.int, Int.max)
 		XCTAssertEqual(mappedObject?.intOptional, Int.max)
-		XCTAssertEqual(mappedObject?.intImplicityUnwrapped, Int.max)
 
 		XCTAssertEqual(mappedObject?.int8, 0)
 		XCTAssertEqual(mappedObject?.int8Optional, nil)
-		XCTAssertEqual(mappedObject?.int8ImplicityUnwrapped, nil)
 
 		XCTAssertEqual(mappedObject?.int16, 0)
 		XCTAssertEqual(mappedObject?.int16Optional, nil)
-		XCTAssertEqual(mappedObject?.int16ImplicityUnwrapped, nil)
 
 #if arch(x86_64) || arch(arm64)
 		XCTAssertEqual(mappedObject?.int32, 0)
 		XCTAssertEqual(mappedObject?.int32Optional, nil)
-		XCTAssertEqual(mappedObject?.int32ImplicityUnwrapped, nil)
 
 		XCTAssertEqual(mappedObject?.int64, Int64.max)
 		XCTAssertEqual(mappedObject?.int64Optional, Int64.max)
-		XCTAssertEqual(mappedObject?.int64ImplicityUnwrapped, Int64.max)
 #else
 		XCTAssertEqual(mappedObject?.int32, Int32.max)
 		XCTAssertEqual(mappedObject?.int32Optional, Int32.max)
-		XCTAssertEqual(mappedObject?.int32ImplicityUnwrapped, Int32.max)
 
 		XCTAssertEqual(mappedObject?.int64, Int64(Int32.max))
 		XCTAssertEqual(mappedObject?.int64Optional, Int64(Int32.max))
-		XCTAssertEqual(mappedObject?.int64ImplicityUnwrapped, Int64(Int32.max))
 #endif
 
 		XCTAssertEqual(mappedObject?.uint, UInt.max)
 		XCTAssertEqual(mappedObject?.uintOptional, UInt.max)
-		XCTAssertEqual(mappedObject?.uintImplicityUnwrapped, UInt.max)
 
 		XCTAssertEqual(mappedObject?.uint8, 0)
 		XCTAssertEqual(mappedObject?.uint8Optional, nil)
-		XCTAssertEqual(mappedObject?.uint8ImplicityUnwrapped, nil)
 
 		XCTAssertEqual(mappedObject?.uint16, 0)
 		XCTAssertEqual(mappedObject?.uint16Optional, nil)
-		XCTAssertEqual(mappedObject?.uint16ImplicityUnwrapped, nil)
 
 #if arch(x86_64) || arch(arm64)
 		XCTAssertEqual(mappedObject?.uint32, 0)
 		XCTAssertEqual(mappedObject?.uint32Optional, nil)
-		XCTAssertEqual(mappedObject?.uint32ImplicityUnwrapped, nil)
 
 		XCTAssertEqual(mappedObject?.uint64, UInt64.max)
 		XCTAssertEqual(mappedObject?.uint64Optional, UInt64.max)
-		XCTAssertEqual(mappedObject?.uint64ImplicityUnwrapped, UInt64.max)
 #else
 		XCTAssertEqual(mappedObject?.uint32, UInt32.max)
 		XCTAssertEqual(mappedObject?.uint32Optional, UInt32.max)
-		XCTAssertEqual(mappedObject?.uint32ImplicityUnwrapped, UInt32.max)
 
 		XCTAssertEqual(mappedObject?.uint64, UInt64(UInt32.max))
 		XCTAssertEqual(mappedObject?.uint64Optional, UInt64(UInt32.max))
-		XCTAssertEqual(mappedObject?.uint64ImplicityUnwrapped, UInt64(UInt32.max))
 #endif
 	}
 	
@@ -278,7 +253,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.double, value)
 		XCTAssertEqual(mappedObject?.doubleOptional, value)
-		XCTAssertEqual(mappedObject?.doubleImplicityUnwrapped, value)
 	}
 	
 	func testMappingFloatFromJSON(){
@@ -290,7 +264,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.float, value)
 		XCTAssertEqual(mappedObject?.floatOptional, value)
-		XCTAssertEqual(mappedObject?.floatImplicityUnwrapped, value)
 	}
 	
 	func testMappingStringFromJSON(){
@@ -302,7 +275,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.string, value)
 		XCTAssertEqual(mappedObject?.stringOptional, value)
-		XCTAssertEqual(mappedObject?.stringImplicityUnwrapped, value)
 	}
 	
 	func testMappingAnyObjectFromJSON(){
@@ -316,7 +288,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.anyObject as? String, value1)
 		XCTAssertEqual(mappedObject?.anyObjectOptional as? Int, value2)
-		XCTAssertEqual(mappedObject?.anyObjectImplicitlyUnwrapped as? Double, value3)
 	}
 
 	func testMappingStringFromNSStringJSON(){
@@ -328,7 +299,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.string, value)
 		XCTAssertEqual(mappedObject?.stringOptional, value)
-		XCTAssertEqual(mappedObject?.stringImplicityUnwrapped, value)
 	}
 
 	// MARK: Test mapping Arrays to JSON and back (with basic types in them Bool, Int, Double, Float, String)
@@ -342,7 +312,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayBool.first, value)
 		XCTAssertEqual(mappedObject?.arrayBoolOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayBoolImplicityUnwrapped.first, value)
 	}
 	
 	func testMappingIntArrayFromJSON(){
@@ -354,7 +323,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayInt.first, value)
 		XCTAssertEqual(mappedObject?.arrayIntOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayIntImplicityUnwrapped.first, value)
 	}
 	
 	func testMappingDoubleArrayFromJSON(){
@@ -366,7 +334,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayDouble.first, value)
 		XCTAssertEqual(mappedObject?.arrayDoubleOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayDoubleImplicityUnwrapped.first, value)
 	}
 	
 	func testMappingFloatArrayFromJSON(){
@@ -378,7 +345,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayFloat.first, value)
 		XCTAssertEqual(mappedObject?.arrayFloatOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayFloatImplicityUnwrapped?.first, value)
 	}
 	
 	func testMappingStringArrayFromJSON(){
@@ -390,7 +356,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayString.first, value)
 		XCTAssertEqual(mappedObject?.arrayStringOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayStringImplicityUnwrapped.first, value)
 	}
 	
 	func testMappingAnyObjectArrayFromJSON(){
@@ -404,7 +369,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayAnyObject.first as? String, value1)
 		XCTAssertEqual(mappedObject?.arrayAnyObjectOptional?.first as? Int, value2)
-		XCTAssertEqual(mappedObject?.arrayAnyObjectImplicitlyUnwrapped.first as? Double, value3)
 	}
 	
 	// MARK: Test mapping Dictionaries to JSON and back (with basic types in them Bool, Int, Double, Float, String)
@@ -419,7 +383,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictBool[key], value)
 		XCTAssertEqual(mappedObject?.dictBoolOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictBoolImplicityUnwrapped[key], value)
 	}
 	
 	func testMappingIntDictionaryFromJSON(){
@@ -432,7 +395,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictInt[key], value)
 		XCTAssertEqual(mappedObject?.dictIntOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictIntImplicityUnwrapped[key], value)
 	}
 	
 	func testMappingDoubleDictionaryFromJSON(){
@@ -445,7 +407,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictDouble[key], value)
 		XCTAssertEqual(mappedObject?.dictDoubleOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictDoubleImplicityUnwrapped[key], value)
 	}
 	
 	func testMappingFloatDictionaryFromJSON(){
@@ -458,7 +419,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictFloat[key], value)
 		XCTAssertEqual(mappedObject?.dictFloatOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictFloatImplicityUnwrapped?[key], value)
 	}
 	
 	func testMappingStringDictionaryFromJSON(){
@@ -471,7 +431,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictString[key], value)
 		XCTAssertEqual(mappedObject?.dictStringOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictStringImplicityUnwrapped?[key], value)
 	}
 	
 	func testMappingAnyObjectDictionaryFromJSON(){
@@ -486,7 +445,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictAnyObject[key] as? String, value1)
 		XCTAssertEqual(mappedObject?.dictAnyObjectOptional?[key] as? Int, value2)
-		XCTAssertEqual(mappedObject?.dictAnyObjectImplicitlyUnwrapped[key] as? Double, value3)
 	}
 
 	func testMappingIntEnumFromJSON(){
@@ -498,7 +456,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.enumInt, value)
 		XCTAssertEqual(mappedObject?.enumIntOptional, value)
-		XCTAssertEqual(mappedObject?.enumIntImplicitlyUnwrapped, value)
 	}
 
 	func testMappingIntEnumFromJSONShouldNotCrashWithNonDefinedvalue() {
@@ -510,7 +467,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.enumInt, BasicTypes.EnumInt.Default)
 		XCTAssertNil(mappedObject?.enumIntOptional)
-		XCTAssertNil(mappedObject?.enumIntImplicitlyUnwrapped)
 	}
 
 	func testMappingDoubleEnumFromJSON(){
@@ -522,7 +478,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.enumDouble, value)
 		XCTAssertEqual(mappedObject?.enumDoubleOptional, value)
-		XCTAssertEqual(mappedObject?.enumDoubleImplicitlyUnwrapped, value)
 	}
 
 	func testMappingFloatEnumFromJSON(){
@@ -534,7 +489,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.enumFloat, value)
 		XCTAssertEqual(mappedObject?.enumFloatOptional, value)
-		XCTAssertEqual(mappedObject?.enumFloatImplicitlyUnwrapped, value)
 	}
 
 	func testMappingStringEnumFromJSON(){
@@ -546,7 +500,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.enumString, value)
 		XCTAssertEqual(mappedObject?.enumStringOptional, value)
-		XCTAssertEqual(mappedObject?.enumStringImplicitlyUnwrapped, value)
 	}
 
 	func testMappingEnumIntArrayFromJSON(){
@@ -558,7 +511,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.arrayEnumInt.first, value)
 		XCTAssertEqual(mappedObject?.arrayEnumIntOptional?.first, value)
-		XCTAssertEqual(mappedObject?.arrayEnumIntImplicitlyUnwrapped.first, value)
 	}
 
 	func testMappingEnumIntArrayFromJSONShouldNotCrashWithNonDefinedvalue() {
@@ -570,7 +522,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertNil(mappedObject?.arrayEnumInt.first)
 		XCTAssertNil(mappedObject?.arrayEnumIntOptional?.first)
-		XCTAssertNil(mappedObject?.arrayEnumIntImplicitlyUnwrapped.first)
 	}
 
 	func testMappingEnumIntDictionaryFromJSON(){
@@ -583,7 +534,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertEqual(mappedObject?.dictEnumInt[key], value)
 		XCTAssertEqual(mappedObject?.dictEnumIntOptional?[key], value)
-		XCTAssertEqual(mappedObject?.dictEnumIntImplicitlyUnwrapped[key], value)
 	}
 
 	func testMappingEnumIntDictionaryFromJSONShouldNotCrashWithNonDefinedvalue() {
@@ -596,7 +546,6 @@ class BasicTypesTestsFromJSON: XCTestCase {
 		XCTAssertNotNil(mappedObject)
 		XCTAssertNil(mappedObject?.dictEnumInt[key])
 		XCTAssertNil(mappedObject?.dictEnumIntOptional?[key])
-		XCTAssertNil(mappedObject?.dictEnumIntImplicitlyUnwrapped[key])
 	}
 
 	func testObjectModelOptionalDictionnaryOfPrimitives() {
